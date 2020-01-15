@@ -9,7 +9,9 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
-    "react-google-login": "5.0.7"
+    "react-google-login": "5.0.7",
+    "jquery": "",
+    "react-async": ""
   },
   "scripts": {
     "start": "react-scripts start",

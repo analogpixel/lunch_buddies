@@ -1,0 +1,32 @@
+.DayPickerContainer {
+}
+
+.dayPickerDay {
+  display: flex;
+  flex-direction: row;
+   justify-content: flex-start;
+  align-items: center;
+  width: 600px;
+}
+
+.dayPickerDayName {
+  width: 200px;
+  font-size: 1em;
+  vertical-align: center;
+  align: center;
+}
+
+.dayPickerSelected {
+  width: 200px;
+  height: 50px;
+  background-color: green;
+  border: 1px solid black;
+}
+
+.dayPickerNotSelected {
+  width: 200px;
+  height: 50px;
+  background-color: red;
+  border: 1px solid black;
+}
+
