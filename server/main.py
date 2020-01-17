@@ -20,24 +20,54 @@ app.add_middleware(
 )
 
 
+# get lunch dates for this week
+@app.get("/getLunchDates")
+def get_lunch_dates():
+  weekNum = datetime.datetime.now().isocalendar()[1]
+  db = firestore.Client()
+  doc_ref = db.collection("lunch_dates").where("week", "==", weekNum)
+
+  l = []
+  for a in doc_ref.stream():
+    l.append( a.to_dict() )
+
+  return json.dumps(l)
+
+@app.post("/createLunchDate")
+async def create_lunch_date(*, request: Request):
+  data = await request.json()
+  weekNum = datetime.datetime.now().isocalendar()[1]
+  data['week'] = weekNum
+  print("JSON data for request:", data)
+  db = firestore.Client()
+  doc_ref = db.collection('lunch_dates').document( "{}_{}_{}".format(data['day'], data['time'], weekNum) )
+  doc_ref.set( data )
+  return "{}"
+
 @app.get("/getWeek")
 def get_week():
   weekNum = datetime.datetime.now().isocalendar()[1]
   db = firestore.Client()
   q = db.collection("lunch_users").where("week_{}".format(weekNum), '>', '').stream()
+  people = []
   for a in q:
-    print( a.to_dict() )
+    t = a.to_dict() 
+    people.append( [t['login_id'], t["week_{}".format(weekNum)]] )
   
-  return {'hello': 'world'}
+  return json.dumps(people)
 
 @app.get("/getTime/{login_id}")
 def get_time(login_id : str):
   db = firestore.Client()
   weekNum = datetime.datetime.now().isocalendar()[1]
   q = db.collection("lunch_users").document(login_id).get().to_dict()
-  q['currentWeek'] = weekNum
-  print( q)
-  return json.dumps( q)
+  if q:
+    q['currentWeek'] = weekNum
+    print( q)
+    return json.dumps( q)
+  else:
+    # no data this week? send some default data back
+    return json.dumps({"week_{}".format(weekNum) : "1,1,1:1,1,1:1,1,1:1,1,1:1,1,1", "login_id": login_id, "currentWeek": weekNum}) 
 
 @app.post("/updateTime")
 async def update_time(*, request: Request):

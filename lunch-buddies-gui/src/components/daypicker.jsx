@@ -33,11 +33,6 @@ class DayPicker extends Component {
     var day = e.target.dataset['day']; 
     var idx = e.target.dataset['time']; 
     
-    /*
-    var daysCopy = JSON.parse(JSON.stringify(this.state.days))
-    daysCopy[day][idx] = 0;
-    this.setState({days: daysCopy});
-    */
     var days =  this.state.days ;
     days[day][idx] = ( this.state.days[day][idx] === 1 ? 0 : 1 ) ;
     this.setState( { days } );
@@ -51,8 +46,8 @@ class DayPicker extends Component {
     var gui = [];
     for (var i=0; i < this.state.days.length; i++) {
       gui.push( 
-        <div class="dayPickerDay">
-          <div class="dayPickerDayName">{this.state.dayList[i] }</div> 
+        <div className="dayPickerDay">
+          <div className="dayPickerDayName">{this.state.dayList[i] }</div> 
          
           <div 
             className={"dayPickerDay_11 " +  (this.state.days[i][0] === 0 ? 'dayPickerNotSelected' : 'dayPickerSelected')} 
@@ -81,14 +76,14 @@ class DayPicker extends Component {
     }
 
     return (
-      <div class="DayPicker">
-        <div class="DayPickerContainer">
+      <div className="DayPicker">
+        <div className="DayPickerContainer">
         
-        <div class="dayPickerDay">
-          <div class="dayPickerDayName"></div>
-          <div class="dayPickerDayName">11 oclock</div>
-          <div class="dayPickerDayName">12 oclock</div>
-          <div class="dayPickerDayName">1 oclock</div>
+        <div className="dayPickerDay">
+          <div className="dayPickerDayName"></div>
+          <div className="dayPickerDayName">11 oclock</div>
+          <div className="dayPickerDayName">12 oclock</div>
+          <div className="dayPickerDayName">1 oclock</div>
         </div>
 
         { gui }

@@ -1,0 +1,23 @@
+.GroupCalendar {
+}
+
+.groupcalendar_timebar {
+  display: flex;
+  height: 20px;
+}
+
+.groupcalendar_timebar_header {
+  width: 100px;
+  background: white;
+}
+
+.groupcalendar_timebar_0 {
+  width: 100px;
+  background-color: red;
+}
+
+.groupcalendar_timebar_1 {
+  width: 100px;
+  background-color: green;
+}
+
