@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: lunch-buddies
+  name: lunch-buddies
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    run: lunch-buddies
+  type: LoadBalancer
+  loadBalancerIP: 34.83.247.219
+  loadBalancerSourceRanges:
+  - 0.0.0.0/0

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: lunch-buddies
+  name: lunch-buddies
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: lunch-buddies
+  template:
+    metadata:
+      labels:
+        run: lunch-buddies
+    spec:
+      containers:
+      - image: gcr.io/saas-rally-dev/lunch-buddies-app
+        name: lunch-buddies
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: "/auth"
+          name: apikeyvol
+        env:
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: "/auth/firebase-dev.json"
+      volumes:
+      - name: apikeyvol
+        secret:
+          secretName: apikey

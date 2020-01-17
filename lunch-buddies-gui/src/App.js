@@ -16,7 +16,8 @@ import schedLunch_img from './resources/schedLunch.png';
 
 class App extends Component {
 
-  URL = "http://localhost:8000"
+  // URL = "http://127.0.0.1:8000"
+  URL = "http://lunch.rallydev.com"
 
   state = { 
     app_state: 'login',
@@ -45,11 +46,11 @@ class App extends Component {
   create_lunch_date = (time,day, mail_list) => {
     console.log("ok create the date", day, typeof(day), JSON.stringify({ day:day}) );
     $.post( this.URL + "/createLunchDate", JSON.stringify( {day: day , time: time, mail_list: mail_list} ));
-    this.setState( {app_state: 'set_calendar'} );
+    this.setState( {app_state: 'view_calendar'} );
   }
 
   loadJson = () =>
-    fetch("http://localhost:8000/getTime/" + this.state.login_id)
+    fetch(this.URL + "/getTime/" + this.state.login_id)
     // .then(res => (res.ok ? res : Promise.reject(res)))
     .then(res => res.json())
     .then(res => JSON.parse(res));
@@ -58,26 +59,65 @@ class App extends Component {
 
     if (  this.state.app_state == 'set_calendar' ) {
       return (
-        <Async promiseFn={this.loadJson}>
-            <Async.Loading> Loading... </Async.Loading>
-            <Async.Rejected>{ error => error.message } Failed to Load </Async.Rejected>
-            <Async.Resolved>
-             {data => (
-              <div>
-              <strong>Loaded some data: {typeof(data)} </strong>
-              <DayPicker data={data} updateState={this.dbStateUpdate}/>
-          <DateViewer />
-               <GroupCalendar createMeeting={this.createMeeting}/>
-               <pre> { data['login_id'] }</pre>
-              </div>
-             )}
-            </Async.Resolved>
-        </Async>
+          <div className="App_set_calendar">
+            <div className="App_set_calendar_content">
+            <div className="App_set_calendar_text">
+            Welcome to your calendar for the week.  Mark the days you want
+            to have lunch; green days means you are available at that time, and
+            orange days, means you are not. Just click the time box to
+            toggle if yes or no.
+            </div>
+            <Async promiseFn={this.loadJson}>
+                <Async.Loading> Loading... </Async.Loading>
+                <Async.Rejected>{ error => error.message } Failed to Load </Async.Rejected>
+                <Async.Resolved>
+                 {data => (
+                  <div>
+                  <DayPicker URL={this.URL} data={data} updateState={this.dbStateUpdate}/>
+                  </div>
+                 )}
+                </Async.Resolved>
+            </Async>
+
+            <div className="App_set_calendar_text">
+            Once you are done, click 
+            <span className="App_set_calendar_text_here" onClick={ () => this.setState({app_state: 'view_calendar'}) }> HERE </span>
+            to see who is available for lunch!
+            </div>
+            </div>
+            <div className="App_set_calendar_footer"></div>
+          </div>
             );
+    } else if (this.state.app_state == 'view_calendar') {
+      return (
+        <div className="App_view_calendar">
+
+          <div className="App_view_calendar_sched">
+            <DateViewer URL={this.URL}/>
+          </div>
+
+          <div className="App_view_calendar_cal">
+            <div className="App_view_calendar_text">
+            Here is everyones calendar for the week.  Find a block of
+            time that seems to work for you and a group you want to invite
+            and then click the +time box at the top of that column to schedule
+            a lunch date with them all. Click 
+            <span className="App_set_calendar_text_here" onClick={ () => this.setState({app_state: 'set_calendar'}) }> HERE </span> if 
+            you want to go back and update your calendar of times you have available.  Is  there
+            already a lunch Scheduled over on the right? No problem, just add the time slot again 
+            and it'll add you to the list!
+            </div>
+            <GroupCalendar URL={this.URL} createMeeting={this.createMeeting}/>
+          </div>
+
+        </div>
+      );
     } else if (this.state.app_state == 'create_date') {
       return (
-        <div className="App">
-          <DateMaker create_lunch_date={this.create_lunch_date} time={this.state.time} day={this.state.day} mail_list={this.state.mail_list}/>
+        <div className="App_DateMaker">
+        <div className="App_DateMaker_dm">
+          <DateMaker URL={this.URL} create_lunch_date={this.create_lunch_date} time={this.state.time} day={this.state.day} mail_list={this.state.mail_list}/>
+        </div>
         </div>
       )
 

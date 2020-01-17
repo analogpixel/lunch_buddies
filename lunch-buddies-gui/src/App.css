@@ -97,3 +97,93 @@
 .App_step3 { grid-area: step3; }
 .App_login { grid-area: login;  padding-top: 40px;}
 .App_footer {grid-area: footer; }
+
+
+.App_set_calendar {
+  height: 100%;
+  display: grid;
+  grid-gap: 3px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "header header header"
+    " . content ."
+    " . footer  .";
+  background-color: #C5E7F1;
+}
+
+.App_set_calendar_content {
+  grid-area: content;
+  margin-top: 60px;
+  height: 80vh;
+}
+
+.App_set_calendar_footer {
+  grid-area: footer;
+  height: 20vh;
+}
+
+.App_set_calendar_text {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 500;
+  font-size: 1.5em;
+  padding-bottom: 40px;
+  padding-top: 20px;
+  font-weight: 500;
+}
+
+.App_set_calendar_text_here {
+  color: red;
+  font-weight: 900;
+}
+
+.App_view_calendar {
+  display: grid;
+  grid-gap: 3px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-areas:
+    "header header header header header"
+    " . cal . sched ."
+    " . . . . .";
+  background-color: #C5E7F1;
+  padding-bottom: 30px;
+  height: 100vh;
+}
+
+.App_view_calendar_cal {
+    grid-area: cal;
+}
+
+.App_view_calendar_sched {
+    grid-area: sched;
+}
+
+.App_view_calendar_text {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 500;
+  font-size: 1.5em;
+  padding-bottom: 40px;
+  padding-top: 20px;
+  font-weight: 500;
+}
+
+.App_DateMaker {
+  display: grid;
+  grid-gap: 3px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "header header header "
+    " . dm ."
+    " .  . .";
+  background-color: #C5E7F1;
+  padding-bottom: 30px;
+  height: 100vh;
+}
+
+.App_DateMaker_header {
+  grid-area: header;
+}
+
+.App_DateMaker_dm {
+  grid-area: dm;
+}
+

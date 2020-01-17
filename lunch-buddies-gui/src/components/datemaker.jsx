@@ -12,7 +12,8 @@ class DateMaker extends Component {
 
 
   loadJson = async () => {
-    var res = await fetch("http://localhost:8000/getWeek");
+    // var res = await fetch("http://localhost:8000/getWeek");
+    var res = await fetch(this.props.URL + "/getWeek");
 
     if (! res.ok ) { console.log("error:",  res.statusText ); } else { console.log("Data loaded")};
 
@@ -32,9 +33,9 @@ class DateMaker extends Component {
   render() {
     return (
       <div className="DateMaker">
-        make a lunch date on { this.state.dayName[this.props.day] } starting at  {this.state.timeName[this.props.time]} including:
-      { this.props.mail_list.map( f => <li>{f}</li> ) }.
-      <button onClick={this.create_lunch_date}> Create Lunch Date</button>
+        <div className="DateMaker_header">Make a lunch date on { this.state.dayName[this.props.day] } starting at  {this.state.timeName[this.props.time]} including:</div>
+      { this.props.mail_list.map( f => <li>{f}</li> ) }
+      <br/><button onClick={this.create_lunch_date}> Create Lunch Date</button>
       </div>
     );
   }

@@ -6,18 +6,28 @@
   height: 20px;
 }
 
+.GroupCalendar_day_header {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.5em;
+}
+
+.GroupCalendar_button {
+  height: 8px;
+  margin-bottom: 10px;
+}
+
 .groupcalendar_timebar_header {
   width: 100px;
-  background: white;
+  padding-bottom: 5px;
 }
 
 .groupcalendar_timebar_0 {
   width: 100px;
-  background-color: red;
+  background-color: #FE9833;
 }
 
 .groupcalendar_timebar_1 {
   width: 100px;
-  background-color: green;
+  background-color: #71F75B;
 }
 

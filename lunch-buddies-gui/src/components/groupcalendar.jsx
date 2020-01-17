@@ -15,7 +15,8 @@ class GroupCalendar extends Component {
   }
 
   loadJson = async () => {
-    var res = await fetch("http://localhost:8000/getWeek");
+    // var res = await fetch("http://localhost:8000/getWeek");
+    var res = await fetch(this.props.URL + "/getWeek");
 
     if (! res.ok ) { console.log("error:",  res.statusText ); } else { console.log("Data loaded")};
 
@@ -51,13 +52,13 @@ class GroupCalendar extends Component {
 
     // for all the days in the week
     for (var weekDay=0; weekDay < 5; weekDay++) {
-      html.push( <h1>Day {this.state.dayName[weekDay]}</h1> );
+      html.push( <div className="GroupCalendar_day_header">{this.state.dayName[weekDay]}</div> );
 
 
       html.push( <div class="groupcalendar_timebar">
-        <div class="groupcalendar_timebar_header"><button data-time="0" data-day={weekDay} onClick={ this.createMeeting }>+ 11:00</button></div> 
-        <div class="groupcalendar_timebar_header"><button data-time="1" data-day={weekDay} onClick={ this.createMeeting }>+ 12:00</button></div> 
-        <div class="groupcalendar_timebar_header"><button data-time="2" data-day={weekDay} onClick={ this.createMeeting }>+ 1:00</button></div> 
+        <div class="groupcalendar_timebar_header"><button className="w3-btn GroupCalendar_button" data-time="0" data-day={weekDay} onClick={ this.createMeeting }>+ 11:00</button></div> 
+        <div class="groupcalendar_timebar_header"><button className="GroupCalendar_button" data-time="1" data-day={weekDay} onClick={ this.createMeeting }>+ 12:00</button></div> 
+        <div class="groupcalendar_timebar_header"><button className="GroupCalendar_button" data-time="2" data-day={weekDay} onClick={ this.createMeeting }>+ 1:00</button></div> 
         </div>
       );
 

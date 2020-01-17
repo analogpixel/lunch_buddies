@@ -1,23 +1,23 @@
-.GroupCalendar {
+.DateViewer {
+
 }
 
-.groupcalendar_timebar {
-  display: flex;
-  height: 20px;
+.DateViewer_section {
+  padding-bottom: 20px;
 }
 
-.groupcalendar_timebar_header {
-  width: 100px;
-  background: white;
+.DateViewer_header {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.5em;
+  font-weight: 600;
 }
 
-.groupcalendar_timebar_0 {
-  width: 100px;
-  background-color: red;
+.DateViewer_list {
 }
 
-.groupcalendar_timebar_1 {
-  width: 100px;
-  background-color: green;
+.DateViewer_list  li {
+  margin-left: 40px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 1.2em;
 }
 

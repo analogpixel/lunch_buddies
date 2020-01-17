@@ -1,1 +1,1 @@
-export GOOGLE_APPLICATION_CREDENTIALS="/Users/mattpoepping/firebase.json"
+export GOOGLE_APPLICATION_CREDENTIALS="/Users/mattpoepping/firebase-dev.json"

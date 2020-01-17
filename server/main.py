@@ -6,6 +6,7 @@ from starlette.requests import Request
 from google.cloud import firestore
 import datetime
 import json
+from starlette.responses import HTMLResponse
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -78,3 +79,8 @@ async def update_time(*, request: Request):
     doc_ref = db.collection('lunch_users').document( data['login_id'] )
     doc_ref.set( {'login_id': data['login_id'] , "week_{}".format(weekNum) : data['times']}, merge=True)
     return {"Hello": "World"}
+
+@app.get("/.*", include_in_schema=False)
+def root():
+    return HTMLResponse(open('static/index.html').read())
+
