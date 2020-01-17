@@ -69,7 +69,7 @@ class GroupCalendar extends Component {
         var dayData = this.state.data[people][1].split(':')[weekDay].split(",").map( f => parseInt(f) ) ;
 
         // fill out the graph for this person on this day
-        html.push(  <div class="groupcalendar_timebar"> { dayData.map( f =>  (<div class={"groupcalendar_timebar_" + f} />)) } {this.state.data[people][0] } </div>);
+        html.push(  <div class="groupcalendar_timebar"> { dayData.map( f =>  (<div class={"groupcalendar_timebar_" + f} />)) }  {this.state.data[people][0].split('@')[0] } </div>);
         }
       }
 

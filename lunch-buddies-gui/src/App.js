@@ -21,7 +21,7 @@ class App extends Component {
 
   state = { 
     app_state: 'login',
-    login_id:  'matt.poepping2@gmail.com'
+    login_id:  ''
   }
 
   responseGoogle = (c) => { 

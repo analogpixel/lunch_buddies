@@ -68,7 +68,7 @@ def get_time(login_id : str):
     return json.dumps( q)
   else:
     # no data this week? send some default data back
-    return json.dumps({"week_{}".format(weekNum) : "1,1,1:1,1,1:1,1,1:1,1,1:1,1,1", "login_id": login_id, "currentWeek": weekNum}) 
+    return json.dumps({"week_{}".format(weekNum) : "0,0,0:0,0,0:0,0,0:0,0,0:0,0,0", "login_id": login_id, "currentWeek": weekNum}) 
 
 @app.post("/updateTime")
 async def update_time(*, request: Request):

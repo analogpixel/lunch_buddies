@@ -146,7 +146,7 @@
     " . . . . .";
   background-color: #C5E7F1;
   padding-bottom: 30px;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .App_view_calendar_cal {

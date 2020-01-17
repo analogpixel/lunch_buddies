@@ -33,7 +33,7 @@ class DateViewer extends Component {
         <Async.Resolved>
         {data => (
           <div>
-          <h1>Lunches Scheduled this week</h1>
+          <h1>Lunches Scheduled this week</h1> 
           { data.map( f => 
             <div className="DateViewer_section">
               <div className="DateViewer_header">
@@ -41,7 +41,7 @@ class DateViewer extends Component {
                   { hour_list[f['time']]} with:
               </div> 
               <div className="DateViewer_list">
-                { f['mail_list'].map( d => <li>{d}</li> ) }  
+                { f['mail_list'].map( d => <li>{d.split('@')[0].replace('.',' ') }</li> ) }  
               </div> 
             </div>
           ) 
