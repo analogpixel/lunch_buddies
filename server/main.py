@@ -64,8 +64,10 @@ def get_time(login_id : str):
   q = db.collection("lunch_users").document(login_id).get().to_dict()
   if q:
     q['currentWeek'] = weekNum
-    print( q)
-    return json.dumps( q)
+    if "week_{}".format(weekNum) not in q:
+      return json.dumps({"week_{}".format(weekNum) : "0,0,0:0,0,0:0,0,0:0,0,0:0,0,0", "login_id": login_id, "currentWeek": weekNum}) 
+    else:
+      return json.dumps( q)
   else:
     # no data this week? send some default data back
     return json.dumps({"week_{}".format(weekNum) : "0,0,0:0,0,0:0,0,0:0,0,0:0,0,0", "login_id": login_id, "currentWeek": weekNum}) 
